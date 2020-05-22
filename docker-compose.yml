@@ -1,0 +1,19 @@
+version: '3.4'
+
+services:  
+  catalog-api:
+    build:
+      context: ./Catalogo.API
+    expose:
+      - "80"
+    ports:
+      - "5101:80"
+#extra hosts can be used for standalone SQL Server or services at the dev PC
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+    environment:
+      - SA_PASSWORD=P4ssw0rd
+      - ACCEPT_EULA=Y
+      - MSSQL_PID=Express
+    ports:
+      - "5434:1433"
